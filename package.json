@@ -1,0 +1,30 @@
+{
+  "name": "desafio-entregable-2",
+  "version": "2.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.5",
+    "express-session": "^1.17.3",
+    "knex": "^2.1.0",
+    "mysql": "^2.18.1",
+    "nanoid": "^4.0.0",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.21.3",
+    "socket.io": "^4.4.1",
+    "sqlite3": "^5.0.8"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.3.0"
+  }
+}
