@@ -1,17 +1,32 @@
-// const { nanoid } = require("nanoid");
-// const router = require("express").Router();
+const router = require("express").Router();
+const passport = require("passport");
+const Container = require("../services/userServices");
+const service = new Container();
 
-// router.post("/login", (req, res) => {
-//   const { email, password } = req.body;
+router.get("/login", (req, res) => {
+  res.redirect("login.html");
+});
 
-//   if (!email || !password) return res.sendStatus(400);
+router.post(
+  "/login",
+  passport.authenticate("login", { failureRedirect: "/serveFailure" }),
+  (req, res) => {
+    res.redirect("/");
+  }
+);
 
-//   try {
-//     const sessioId = nanoid();
-//     req.session.sessions = { sessionId, guid };
-//   } catch (e) {
-//     return res.sendStatus(401);
-//   }
-// });
+router.post(
+  "/singup",
+  passport.authenticate("register", {
+    failureRedirect: "/serveFailure",
+  }),
+  (req, res) => {
+    res.redirect("/");
+  }
+);
 
-// module.exports = router;
+router.get("/serveFailure", (req, res) => {
+  res.redirect("failureLogin.html");
+});
+
+module.exports = router;

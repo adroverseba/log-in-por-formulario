@@ -1,10 +1,10 @@
 const Container = require("../services/productServices");
 const service = new Container();
-const { login } = require("../middleware/auth");
+const checkAuthentication = require("../middleware/utilMiddleware");
 
 const router = require("express").Router();
 
-router.get("/", async (req, res) => {
+router.get("/", checkAuthentication, async (req, res) => {
   // res.redirect("../login.html");
   // console.log("prueba");
   const resp = await service.getAll();

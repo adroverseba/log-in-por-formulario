@@ -15,9 +15,14 @@
 <body>
   <div class="container">
 
-    <h2 class="text-center my-3">Log in</h2>
-    <form action="/login" method="POST" id="login-form">
-      <label for="email">User name</label>
+    <h2 class="text-center my-3">Sing up</h2>
+    <form action="/singup" method="POST" id="singup-form">
+
+      <label for="name">nombre </label>
+      <input id="name" type="name" name="name" placeholder="nombre completo" class="form-control" required>
+
+
+      <label for="email">email (user name)</label>
       <input id="email" type="email" name="email" placeholder="ejemplo@gmail.com" class="form-control" required>
 
       <label for="password">Password</label>
@@ -27,10 +32,6 @@
       <input type="submit" class="btn btn-primary btn-sm btn-block my-2" value="Agregar">
     </form>
 
-    <hr>
-    <h3>No tenes una cuenta?</h3>
-    <a class="btn btn-primary btn-sm " href="./singup.html" role="button">registrate</a>
-    <!-- <a href="./register.html">registrate</a> -->
   </div>
 </body>
 

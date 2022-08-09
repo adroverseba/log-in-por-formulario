@@ -1,10 +1,14 @@
 const { models } = require("../libs/sequelize");
 
-class MessageService {
+class UserService {
   constructor() {}
 
   async getAll() {
     return await models.User.findAll();
+  }
+
+  async getOne(username) {
+    return await models.User.findOne({ where: { email: username } });
   }
 
   async save(product) {
@@ -13,4 +17,4 @@ class MessageService {
   }
 }
 
-module.exports = MessageService;
+module.exports = UserService;

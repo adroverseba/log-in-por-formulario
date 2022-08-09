@@ -21,9 +21,6 @@ const productTable = async (productos) => {
 //     document.getElementById("productos").innerHTML = html;
 //   });
 // });
-document.addEventListener("DOMContentLoaded", () => {
-  console.log(cookie);
-});
 
 const getProductBtn = document.getElementById("getProducts");
 getProductBtn.addEventListener("click", () => {

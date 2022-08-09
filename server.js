@@ -7,6 +7,8 @@ const Mensajes = require("./services/clase-Mensajes");
 const { knexMessage } = require("./libs/mariaDB");
 const routerApi = require("./routes");
 const { login } = require("./middleware/auth");
+const passport = require("passport");
+const checkAuthentication = require("./middleware/utilMiddleware");
 
 const app = express();
 const httpServer = new HttpServer(app);
@@ -24,6 +26,9 @@ app.use(
     },
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 //codificacion
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,15 +37,13 @@ app.use(express.static("public"));
 //configuracion de Router
 routerApi(app);
 
-app.get("/", login, (req, res) => {
-  // res.send("main");
+app.get("/", checkAuthentication, (req, res) => {
   res.redirect("productos.html");
 });
 
 app.post("/", (req, res) => {
   const { email, password } = req.body;
-  req.session.email = email;
-  req.session.password = password;
+  req.session.user = { email, password };
   console.log(email);
   res.redirect("/");
 });
@@ -64,9 +67,8 @@ io.on("connection", async (socket) => {
     io.sockets.emit("mensajes", await mensajes.getAll());
   });
 });
-
 /**++++++++++++++++++++++++++++++++++++++++++++++ */
-// Server Listen
+// Server Listen+
 
 const PORT = process.env.PORT || 8081;
 
