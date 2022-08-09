@@ -24,7 +24,7 @@
       <input id="password" type="password" name="password" placeholder="contrasena" class="form-control" required>
 
 
-      <input type="submit" class="btn btn-primary btn-sm btn-block my-2" value="Agregar">
+      <input type="submit" class="btn btn-primary btn-sm btn-block my-2" value="Agregar" onclick="saveUsername()">
     </form>
 
     <hr>
@@ -32,6 +32,13 @@
     <a class="btn btn-primary btn-sm " href="./singup.html" role="button">registrate</a>
     <!-- <a href="./register.html">registrate</a> -->
   </div>
+
+  <script>
+    const saveUsername = () => {
+      const emailUser = document.getElementById('email').value;
+      localStorage.setItem('userEmail', JSON.stringify(emailUser))
+    }
+  </script>
 </body>
 
 </html>

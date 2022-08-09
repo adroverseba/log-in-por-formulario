@@ -38,7 +38,7 @@
       </div>
       <div class="collapse navbar-collapse"></div>
       <div class="collapse navbar-collapse active">
-        <a class="nav-link" href="/desloguear">Desloguear</a>
+        <a class="nav-link" href="/desloguear" onclick="deslogueo()">Desloguear</a>
 
       </div>
     </div>
@@ -79,7 +79,7 @@
     <button class="btn btn-info btn-sm" id="getProducts">Ver productos de prueba</button>
 
     <!-- chat  -->
-    <h2>Mensajero</h2>
+    <h2 class="mt-5">Mensajero</h2>
 
     <form id="enviarMensaje" class="my-3">
       <div id="output"></div>
@@ -90,6 +90,27 @@
 
     <script src="./js/main.js"></script>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // console.log('aca estoy rulo');
+      let divSaludo = document.getElementById('bienvenida-productos')
+
+      if (localStorage.getItem('userEmail')) {
+        let nameUser = JSON.parse(localStorage.getItem('userEmail'));
+        divSaludo.textContent = `Muy buenas tardes estimado ${nameUser}`
+      } else {
+        divSaludo.classList.replace('alert-success', 'alert-danger')
+        divSaludo.textContent = 'USUARIO NO REGISTRADO'
+        document.getElementById('enviarMensaje').style.display = 'none'
+      }
+    }
+    )
+
+    const deslogueo = () => {
+      localStorage.removeItem('userEmail')
+    }
+  </script>
 </body>
 
 </html>
