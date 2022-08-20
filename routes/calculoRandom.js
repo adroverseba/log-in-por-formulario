@@ -1,3 +1,5 @@
+//* child
+
 const randomNim = (cant) => {
   const randomsNums = {};
   console.log(cant);
@@ -13,5 +15,9 @@ const randomNim = (cant) => {
 };
 
 process.on("message", (cant) => {
-  process.send(randomNim(cant));
+  const calculo = randomNim(cant);
+  process.send(calculo);
+  console.log("termino anterior");
+
+  //queda verificar como matar al process.child
 });
