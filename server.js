@@ -37,14 +37,8 @@ app.use(express.static("public"));
 //configuracion de Router
 routerApi(app);
 
-//* NO OLVIDAR DESCOMENTAR LAS LINEAS DE ABAJO
-// app.get("/", checkAuthentication, (req, res) => {
-//   res.redirect("productos.html");
-// });
-
-app.get("/", (req, res) => {
-  res.send("Hola holaaaa, Bienvenidos a myApp");
-  // res.redirect("productos.html");
+app.get("/", checkAuthentication, (req, res) => {
+  res.redirect("productos.html");
 });
 
 app.post("/", (req, res) => {
