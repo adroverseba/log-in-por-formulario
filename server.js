@@ -70,7 +70,8 @@ io.on("connection", async (socket) => {
 /**++++++++++++++++++++++++++++++++++++++++++++++ */
 // Server Listen+
 
-const PORT = process.env.PORT || 8081;
+// const PORT = process.env.PORT || 8081;
+const PORT = process.argv[2] || 8081;
 
 const connectedServer = httpServer.listen(PORT, () => {
   console.log(
