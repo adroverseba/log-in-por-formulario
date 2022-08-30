@@ -33,6 +33,7 @@
 //   }
 // }
 // module.exports = Container;
+const logger = require("../logger/index");
 
 const { models } = require("../libs/sequelize");
 class Container {

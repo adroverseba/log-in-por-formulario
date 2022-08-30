@@ -1,6 +1,8 @@
 const Container = require("../services/userServices");
 const service = new Container();
 
+const logger = require("../logger/index");
+
 const router = require("express").Router();
 
 router.get("/", async (req, res) => {
@@ -10,7 +12,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const prod = req.body;
-  console.log(prod);
+  logger.info(prod);
 
   res.status(200).send(await service.save(prod));
 });

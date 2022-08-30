@@ -1,5 +1,6 @@
 const { models } = require("../libs/sequelize");
 
+const logger = require("../logger/index");
 class UserService {
   constructor() {}
 

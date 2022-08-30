@@ -1,3 +1,5 @@
+const logger = require("../logger/index");
+
 class Mensajes {
   constructor(knex, table) {
     this.knex = knex;
@@ -25,7 +27,7 @@ class Mensajes {
       .insert(objeto)
       .then((prod) => prod)
       .catch((err) => {
-        console.log(err);
+        logger.error(err);
         throw err;
       });
   }
