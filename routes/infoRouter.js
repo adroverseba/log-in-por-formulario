@@ -12,6 +12,8 @@ router.get("/", (req, res) => {
     processId: process.pid,
     carpetaProyecto: projectFile[projectFile.length - 2],
   };
+  // console.log('consologueo de la info para test de carga: ');
+  // console.log(info);
   res.send(info);
 });
 

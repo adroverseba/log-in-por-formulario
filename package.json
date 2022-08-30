@@ -4,13 +4,15 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "node ./test/autocannon.js",
+    "start": "0x server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autocannon": "^7.9.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
     "express": "^4.17.3",

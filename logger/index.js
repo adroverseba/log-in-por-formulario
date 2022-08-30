@@ -13,3 +13,5 @@ if (config.env === "production") {
 }
 
 module.exports = logger;
+
+//todo: colocar en el try catch
