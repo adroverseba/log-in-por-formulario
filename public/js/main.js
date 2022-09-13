@@ -56,11 +56,12 @@ ingresoProducto.addEventListener("submit", async (e) => {
       thumbnail: ingresoProducto.children.foto.value,
     }),
   };
-  const resp = await fetch("/api/productos-test", options);
+  await fetch("/api/productos-test", options);
 
   // console.log(producto);
   // socket.emit("agregarProducto", producto);
   ingresoProducto.reset();
+  // location.reload();
 });
 
 // +++++++++++++++++++++++++

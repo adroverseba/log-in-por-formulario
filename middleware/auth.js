@@ -23,7 +23,7 @@ passport.use(
       let user = await service.getOne(username);
 
       if (user && user.email === username && user.password === password) {
-        console.log("aca estoy");
+        // console.log("aca estoy");
         return next(null, user);
       } else {
         return next(null, false);
