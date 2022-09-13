@@ -53,6 +53,12 @@ app.get("/desloguear", (req, res) => {
   res.redirect("/");
 });
 
+app.post("/send-email", (req, res) => {
+  const { userEmail, cart } = req.body;
+  // let correo = JSON.parse(localStorage.getItem("userEmail"));
+  res.json(cart);
+});
+
 //? PRODUCTOS
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++
