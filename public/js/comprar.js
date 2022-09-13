@@ -194,6 +194,7 @@ const printFooter = () => {
             text: `Su compra a sido realizada con exito. Email de confirmacion enviado a ${userEmail}`,
           });
 
+          //envio de email - cart
           let options = {
             method: "POST",
             headers: {
@@ -202,6 +203,7 @@ const printFooter = () => {
             body: JSON.stringify({
               userEmail,
               cart,
+              nPrecio,
             }),
           };
 

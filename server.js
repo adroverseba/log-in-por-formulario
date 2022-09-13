@@ -9,6 +9,8 @@ const routerApi = require("./routes");
 const { login } = require("./middleware/auth");
 const passport = require("passport");
 const checkAuthentication = require("./middleware/utilMiddleware");
+//importacion mailer
+const transporter = require("./libs/mailer");
 
 const app = express();
 const httpServer = new HttpServer(app);
@@ -54,9 +56,37 @@ app.get("/desloguear", (req, res) => {
 });
 
 app.post("/send-email", (req, res) => {
-  const { userEmail, cart } = req.body;
-  // let correo = JSON.parse(localStorage.getItem("userEmail"));
-  res.json(cart);
+  const { userEmail, cart, nPrecio } = req.body;
+
+  const purchasedProduct = (products) =>
+    Object.values(products).map((prod) => {
+      return ` <li>${prod.cantidad} ->${prod.title}</li>`;
+    });
+
+  let asunto = "Tienda Electronica";
+  let mensaje = `
+  <h1>Compra realizada con exito</h1>
+  <p>Usted a comprado:</p>
+  <ul>${purchasedProduct(cart)}</ul> sumando un total de <b>$${nPrecio}</b>.<br>
+Muchas gracias por confiar en nosotros.`;
+
+  const mailOptions = {
+    from: ' " Hola😊 Tienda Virtual Tecnologia 🦄"<adroverseba.dev@gmail.com>',
+    to: userEmail,
+    subject: asunto,
+    html: mensaje,
+  };
+
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log("Error: ", err);
+      return;
+    }
+
+    console.log(info);
+  });
+
+  res.status(200).json(cart);
 });
 
 //? PRODUCTOS
