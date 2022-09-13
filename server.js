@@ -55,6 +55,7 @@ app.get("/desloguear", (req, res) => {
   res.redirect("/");
 });
 
+//envio de EMAIL
 app.post("/send-email", (req, res) => {
   const { userEmail, cart, nPrecio } = req.body;
 
