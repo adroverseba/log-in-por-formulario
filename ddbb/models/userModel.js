@@ -50,7 +50,7 @@ const { Model, DataTypes } = require("sequelize");
 const USER_TABLE = "usuarios";
 
 const UserSchema = {
-  guid: {
+  id: {
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER,
@@ -70,6 +70,12 @@ const UserSchema = {
 };
 
 class User extends Model {
+  static associate(models) {
+    this.hasMany(models.Order, {
+      as: "orders",
+      foreignKey: "userId",
+    });
+  }
   static config(sequelize) {
     return {
       sequelize,
