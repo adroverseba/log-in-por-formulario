@@ -4,7 +4,10 @@ const checkAuthentication = require("../middleware/utilMiddleware");
 
 const router = require("express").Router();
 
-router.get("/", checkAuthentication, async (req, res) => {
+//TODO: descomentar la linea de abajo
+// router.get("/", checkAuthentication, async (req, res) => {
+//* solo para pruebas de rutas
+router.get("/", async (req, res) => {
   // res.redirect("../login.html");
   // console.log("prueba");
   const resp = await service.getAll();
