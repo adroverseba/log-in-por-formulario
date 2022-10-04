@@ -121,3 +121,5 @@ const connectedServer = httpServer.listen(PORT, () => {
 connectedServer.on("error", (error) =>
   console.log(`Error en el server:${error}`)
 );
+
+module.exports = app;

@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const prod = req.body;
-  console.log(prod);
+  // console.log(prod);
   res.status(200).send(await service.save(prod));
 });
 
