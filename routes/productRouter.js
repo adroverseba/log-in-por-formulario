@@ -31,7 +31,18 @@ router.post("/", async (req, res) => {
     const prod = req.body;
     res.status(201).send(await service.save(prod));
   } catch (error) {
-    //
+    next(error);
+  }
+});
+
+router.patch("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const rta = await service.update(id, body);
+    res.json(rta);
+  } catch (error) {
+    next(error);
   }
 });
 

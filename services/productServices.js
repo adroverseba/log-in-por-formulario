@@ -37,6 +37,7 @@ const logger = require("../logger/index");
 const boom = require("@hapi/boom");
 
 const { models } = require("../libs/sequelize");
+const { service } = require("../config/mail");
 class Container {
   constructor() {}
 
@@ -55,6 +56,12 @@ class Container {
   async save(product) {
     const newProduct = await models.Product.create(product);
     return newProduct;
+  }
+
+  async update(id, changes) {
+    const product = await this.findOne(id);
+    const rta = await product.update(changes);
+    return rta;
   }
 
   async delete(id) {

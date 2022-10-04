@@ -23,10 +23,19 @@ describe("POST", () => {
     thumbnail: "some url",
   };
 
-  test("should respond with a 200 status code", async () => {
+  test("should respond with a 201 status code", async () => {
     const response = await request(app)
       .post("/api/productos-test")
       .send(newProduct);
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(201);
+  });
+});
+
+describe("PATCH", () => {
+  test("should respond with a update object", async () => {
+    const response = await request(app)
+      .patch("/api/productos-test/:id")
+      .send({ price: 999 });
+    expect(response.body).toBeInstanceOf(Object);
   });
 });
