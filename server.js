@@ -2,6 +2,7 @@ const express = require("express");
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
 const session = require("express-session");
+const { boomErrorHandler } = require("./middleware/error.handler");
 
 const Mensajes = require("./services/clase-Mensajes");
 const { knexMessage } = require("./libs/mariaDB");
@@ -89,6 +90,9 @@ Muchas gracias por confiar en nosotros.`;
 
   res.status(200).json(cart);
 });
+
+//middlewares errores
+app.use(boomErrorHandler);
 
 //? PRODUCTOS
 

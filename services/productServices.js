@@ -34,6 +34,7 @@
 // }
 // module.exports = Container;
 const logger = require("../logger/index");
+const boom = require("@hapi/boom");
 
 const { models } = require("../libs/sequelize");
 class Container {
@@ -43,9 +44,23 @@ class Container {
     return await models.Product.findAll();
   }
 
+  async findOne(id) {
+    const product = await models.Product.findByPk(id);
+    if (!product) {
+      throw boom.notFound("product not found");
+    }
+    return product;
+  }
+
   async save(product) {
     const newProduct = await models.Product.create(product);
     return newProduct;
+  }
+
+  async delete(id) {
+    const product = await this.findOne(id);
+    await product.destroy();
+    return { id };
   }
 }
 module.exports = Container;

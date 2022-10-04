@@ -1,6 +1,7 @@
 const Container = require("../services/productServices");
 const service = new Container();
 const checkAuthentication = require("../middleware/utilMiddleware");
+const setupModels = require("../ddbb/models");
 
 const router = require("express").Router();
 
@@ -15,10 +16,33 @@ router.get("/", async (req, res) => {
   res.status(200).send(resp);
 });
 
+router.get("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const response = await service.findOne(id);
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post("/", async (req, res) => {
-  const prod = req.body;
-  // console.log(prod);
-  res.status(200).send(await service.save(prod));
+  try {
+    const prod = req.body;
+    res.status(201).send(await service.save(prod));
+  } catch (error) {
+    //
+  }
+});
+
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteProd = await service.delete(id);
+    res.status(200).json(deleteProd);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
