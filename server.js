@@ -13,6 +13,9 @@ const checkAuthentication = require("./middleware/utilMiddleware");
 //importacion mailer
 const transporter = require("./libs/mailer");
 
+//importacion de graphlq controller
+const GraphQLController = require("./graphql.js");
+
 const app = express();
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
@@ -39,6 +42,8 @@ app.use(express.static("public"));
 
 //configuracion de Router
 routerApi(app);
+//paso el middleware de graphql
+app.use("/graphql", new GraphQLController());
 
 app.get("/", checkAuthentication, (req, res) => {
   res.redirect("productos.html");
@@ -108,7 +113,8 @@ io.on("connection", async (socket) => {
     io.sockets.emit("mensajes", await mensajes.getAll());
   });
 });
-/**++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++ */
 // Server Listen+
 
 const PORT = process.env.PORT || 8081;

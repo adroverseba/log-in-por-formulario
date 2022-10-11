@@ -39,3 +39,11 @@ describe("PATCH", () => {
     expect(response.body).toBeInstanceOf(Object);
   });
 });
+
+describe("DELETE", () => {
+  test("should respond with id", async () => {
+    const id = 2;
+    const response = await request(app).delete(`/api/productos-test/${id}`);
+    expect(response.statusCode).toBe(200);
+  });
+});
