@@ -1,0 +1,28 @@
+query {
+  getProducts {
+    title
+    price
+  }
+}
+
+query {
+  getOneProduct(id: "1") {
+    title
+    price
+  }
+}
+
+mutation {
+  createProduct(
+    datos: {
+      title: "parlante barra red"
+      price: 6000
+      thumbnail: "https://www.qloud.ar/SITES/IMG/compuservice-04-2022/257_31-05-2022-08-05-18-barra-netmak.jpg"
+    }
+  ) {
+    id
+    title
+    price
+    thumbnail
+  }
+}

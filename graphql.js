@@ -1,6 +1,7 @@
 const { graphqlHTTP } = require("express-graphql");
 const { buildSchema } = require("graphql");
-const ProductApi = require("./services/graphqlServices");
+// const ProductApi = require("./services/graphqlServices");
+const ProductApi = require("./services/productServices");
 
 const schema = buildSchema(`
   type Product {
@@ -10,13 +11,16 @@ const schema = buildSchema(`
     thumbnail: String
   }
   input ProductInput {
-    title: String
-    price: Int
-    thumbnail: String
+    title: String!
+    price: Int!
+    thumbnail: String!
   }
   type Query {
-    getProduct(id: ID!): Product,
+    getOneProduct(id: ID!): Product,
     getProducts: [Product],
+  }
+  type Mutation{
+    createProduct(datos:ProductInput):Product
   }
 
 `);
@@ -29,6 +33,14 @@ class GraphQLController {
       rootValue: {
         getProducts: async () => {
           return await api.getAll();
+        },
+        getOneProduct: async (args) => {
+          const { id } = args;
+          console.log(id);
+          return await api.findOne(id);
+        },
+        createProduct: async ({ datos }) => {
+          return await api.save(datos);
         },
       },
       graphiql: true,
